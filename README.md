@@ -1,0 +1,1 @@
+Pacer is a simple python script that can help you to calculate pace, time or distance of your running workout.
