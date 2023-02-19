@@ -16,6 +16,11 @@ def save():
         print('Тренировка сохранена в файле scores.json')
 
 
+def edit_scores(list_of_workouts):
+    for workout in list_of_workouts:
+        print(workout)
+
+
 def get_pace() -> float:
     pace = float(input('\tТемп: ').replace(',', '.').replace(':', '.'))
     return sum(x for x in [pace // 1 * 60, round(pace % 1, 2) * 100])
@@ -30,11 +35,15 @@ def get_time() -> int:
 
 
 def main() -> None:
+    try:
+        scores = load()
+    except:
+        scores = []
+
     flag = input('\nНапишите что вы хотите рассчитать\nТемп, Время, Дистанция: ').lower()
 
     if flag in ['результаты', 'р', 'res', 'r']:
-        for score in scores:
-            print(score)
+        edit_scores(scores)
 
     elif flag in ['темп', 'т', 'pace', 'p']:
         print('Задайте')
@@ -80,8 +89,4 @@ def main() -> None:
 
 
 if __name__ == '__main__':
-    try:
-        scores = load()
-    except:
-        scores = []
     main()
