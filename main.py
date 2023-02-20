@@ -6,13 +6,13 @@ from time import strftime, gmtime
 def load():
     print('Для просмотра истории тренировок напишите команду Результаты')
     with open('scores.json', 'r', encoding='UTF-8') as fh:
-        scores = json.load(fh)
-        return scores
+        list_to_load = json.load(fh)
+        return list_to_load
 
 
-def save():
+def save(list_to_save):
     with open('scores.json', 'w', encoding='UTF-8') as fh:
-        fh.write(json.dumps(scores, ensure_ascii=False))
+        fh.write(json.dumps(list_to_save, ensure_ascii=False))
         print('Тренировка сохранена в файле scores.json')
 
 
@@ -56,7 +56,7 @@ def main() -> None:
                      'Время': str(timedelta(seconds=time)),
                      'Дистанция': str(distance)}
         scores.append(new_score)
-        save()
+        save(scores)
 
     elif flag in ['время', 'в', 'time', 't']:
         print('Задайте')
@@ -69,7 +69,7 @@ def main() -> None:
                      'Время': time,
                      'Дистанция': str(distance)}
         scores.append(new_score)
-        save()
+        save(scores)
 
     elif flag in ['дистанция', 'д', 'distance', 'd']:
         print('Задайте')
@@ -82,7 +82,7 @@ def main() -> None:
                      'Время': str(timedelta(seconds=time)),
                      'Дистанция': str(distance)}
         scores.append(new_score)
-        save()
+        save(scores)
 
     else:
         print('Некорректные данные')
